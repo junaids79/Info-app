@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📊 Student Success Infographic</title>
+
+  <!-- Google Font: Outfit -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+
+    <section class="infographic" id="infographic">
+      <h1 class="heading">🎓 Student Success Overview</h1>
+      <p class="subtitle">A glimpse into our academic excellence and community impact.</p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h2 class="stat-number" data-target="92">0%</h2>
+          <p>Pass Rate</p>
+        </div>
+        <div class="stat-card">
+          <h2 class="stat-number" data-target="180">0+</h2>
+          <p>Top College Admissions</p>
+        </div>
+        <div class="stat-card">
+          <h2 class="stat-number" data-target="98">0%</h2>
+          <p>Parent Satisfaction</p>
+        </div>
+        <div class="stat-card">
+          <h2 class="stat-number" data-target="85">0%</h2>
+          <p>Students in Merit List</p>
+        </div>
+        <div class="stat-card">
+          <h2 class="stat-number" data-target="100">0%</h2>
+          <p>Board Results Since 2018</p>
+        </div>
+        <div class="stat-card">
+          <h2 class="stat-number" data-target="15">0:1</h2>
+          <p>Student-Teacher Ratio</p>
+        </div>
+      </div>
+    </section>
+
+    <div id="loader" class="loader">📸 Processing screenshot...</div>
+    <button id="screenshotBtn" class="btn">Take Screenshot</button>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Animate numbers on page load
+    const counters = document.querySelectorAll(".stat-number");
+
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute("data-target");
+        const current = +counter.innerText.replace(/\D/g, '');
+        const increment = Math.ceil(target / 100);
+
+        if (current < target) {
+          counter.innerText = target >= 15 ? `${current + increment}+` : `${current + increment}%`;
+          setTimeout(updateCount, 25);
+        } else {
+          counter.innerText = target >= 15 ? `${target}+` : `${target}%`;
+        }
+      };
+      updateCount();
+    });
+  </script>
+</body>
+</html>
